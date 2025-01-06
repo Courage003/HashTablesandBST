@@ -77,6 +77,27 @@ class MyHashTable<K,V>{
         return null;
     }
 
+    // Remove a key-value pair by key
+    public void remove(K key) {
+        int index = getBucketIndex(key);
+        MyMapNode<K, V> head = bucketArray.get(index);
+        MyMapNode<K, V> prev = null;
+
+        // Search for the key in the chain
+        while (head != null) {
+            if (head.key.equals(key)) {
+                if (prev == null) {
+                    bucketArray.set(index, head.next);
+                } else {
+                    prev.next = head.next;
+                }
+                return;
+            }
+            prev = head;
+            head = head.next;
+        }
+    }
+
 
     @Override
     public String toString() {
@@ -109,6 +130,9 @@ public class WordFrequency {
                 wordFrequency.put(word, count + 1);
             }
         }
+
+        // Remove the word "avoidable"
+        wordFrequency.remove("avoidable");
 
         // Print the word frequencies
         System.out.println("Word Frequencies: " + wordFrequency);
