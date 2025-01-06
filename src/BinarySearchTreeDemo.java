@@ -14,10 +14,18 @@ class MyBinaryNode<K extends Comparable<K>>{
 //Binary Search Tree class
 class MyBinarySearchTree<K extends Comparable<K>>{
     private MyBinaryNode<K> root;
+    private int size;
 
-    //add a node to BST
-    public void add(K key){
-        this.root=this.addRecursively(root,key);
+    // Constructor
+    public MyBinarySearchTree() {
+        this.root = null;
+        this.size = 0;
+    }
+
+    // Add a node to the BST
+    public void add(K key) {
+        this.root = this.addRecursively(root, key);
+        this.size++;
     }
     // Recursive helper method to add nodes
     private MyBinaryNode<K> addRecursively(MyBinaryNode<K> current, K key) {
@@ -32,6 +40,11 @@ class MyBinarySearchTree<K extends Comparable<K>>{
         }
 
         return current;
+    }
+
+    // Get the size of the tree
+    public int size() {
+        return this.size;
     }
 
     // In-order traversal to print the tree
@@ -63,5 +76,8 @@ public class BinarySearchTreeDemo {
         // Print the BST in in-order traversal
         System.out.println("In-order traversal of BST:");
         bst.printInOrder();
+
+        // Check the size of the tree
+        System.out.println("Size of the BST: " + bst.size());
     }
 }
