@@ -95,8 +95,8 @@ class MyHashTable<K,V>{
 
 public class WordFrequency {
     public static void main(String[] args){
-        String sentence= "To be or not to be";
-        String[] words=sentence.toLowerCase().split(" ");
+        String paragraph = "Paranoids are not paranoid because they are paranoid but because they keep putting themselves deliberately into paranoid avoidable situations";
+        String[] words = paragraph.toLowerCase().split(" ");
 
         MyHashTable<String, Integer> wordFrequency = new MyHashTable<>(10);
 
