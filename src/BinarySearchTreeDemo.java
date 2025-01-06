@@ -60,6 +60,25 @@ class MyBinarySearchTree<K extends Comparable<K>>{
             printInOrderRecursively(node.right);
         }
     }
+
+    // Search for a key in the BST
+    public boolean search(K key) {
+        return searchRecursively(this.root, key);
+    }
+
+    private boolean searchRecursively(MyBinaryNode<K> current, K key) {
+        if (current == null) {
+            return false;
+        }
+
+        if (key.compareTo(current.key) == 0) {
+            return true;
+        } else if (key.compareTo(current.key) < 0) {
+            return searchRecursively(current.left, key);
+        } else {
+            return searchRecursively(current.right, key);
+        }
+    }
 }
 
 
@@ -72,6 +91,7 @@ public class BinarySearchTreeDemo {
         bst.add(56); // Root node
         bst.add(30); // Left of root
         bst.add(70); // Right of root
+        bst.add(63); // Node to search later
 
         // Print the BST in in-order traversal
         System.out.println("In-order traversal of BST:");
@@ -79,5 +99,10 @@ public class BinarySearchTreeDemo {
 
         // Check the size of the tree
         System.out.println("Size of the BST: " + bst.size());
+
+        // Search for the key 63
+        int searchKey = 63;
+        boolean isFound = bst.search(searchKey);
+        System.out.println("Is key " + searchKey + " present in the BST? " + isFound);
     }
 }
